@@ -1,0 +1,51 @@
+.cstmContainer{
+    padding: 20px 140px;
+}
+
+.cstmFlex{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.cstmlabel{
+    font-size: 14px !important;
+    width: 20%;
+    color: #4d535e !important;
+}
+.cstmFormLayout{
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+}
+
+.cstmInput{
+    border: 1px solid #ced4da9c;
+    padding: 8px 16px;
+    border-radius: 4px;
+    width: 50%;
+}
+
+.cstmDeleteIcon{
+    font-size: 22px;
+    color: red;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+.cstmDeleteIcon:hover{
+    color: rgb(97, 9, 9);
+}
+
+.cstmAddIcon{
+    color: #0070fc;
+    font-size: 22px;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+.cstmAddIcon:hover{
+    color: #073d80;
+}
+
+
+.headingColor{
+    color: #a9a7bb;
+}

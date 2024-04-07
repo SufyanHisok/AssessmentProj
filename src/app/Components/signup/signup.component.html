@@ -1,0 +1,157 @@
+
+
+<div class="cstmContainer mt-4">
+    <h2>Sign Up</h2>
+
+    <div>
+        <form [formGroup]="SignupForm" ngvali class=" mt-4">
+            <div class="col-md-6 cstmFormLayout">
+            <div class="form-group cstmFlex">
+                <label for="firstName" class="cstmlabel">First Name*</label>
+                <input type="text" class=" cstmInput" id="firstName" formControlName="firstName" required>
+            </div>
+            <div class="form-group cstmFlex">
+                <label for="lastName" class="cstmlabel">Last Name*</label>
+                <input type="text" class=" cstmInput" id="lastName" formControlName="lastName">
+            </div>
+            <div class="form-group cstmFlex">
+                <label for="username" class="cstmlabel">Username*</label>
+                <input type="text" class=" cstmInput" id="userName" formControlName="username"><br>
+            </div>
+            <small style="color: red;" *ngIf="SignupForm.get('username')?.errors && SignupForm.get('username')?.touched">Please enter username without space</small>
+            <div class="form-group cstmFlex">
+                <label for="email" class="cstmlabel">Email*</label>
+                <input type="email" class=" cstmInput" id="email" formControlName="email">
+            </div>
+            <div class="form-group cstmFlex">
+                <label for="brandName" class="cstmlabel">Brand Name*</label>
+                <input type="text" class=" cstmInput" id="brandName" formControlName="brandName">
+            </div>
+            <div class="form-group cstmFlex">
+                <label for="department" class="cstmlabel">Department*</label>
+                <input type="text" class=" cstmInput" id="department" formControlName="department">
+            </div>
+            <div class="form-group cstmFlex">
+                <label for="mobileNumber" class="cstmlabel">Mobile No.</label>
+                <input type="text" class=" cstmInput" id="mobileNumber" formControlName="mobileNumber">
+            </div>
+            <div class="form-group cstmFlex">
+                <label for="telephoneNumber" class="cstmlabel">Telephone No.*</label>
+                <input type="text" class=" cstmInput" id="telephoneNumber" formControlName="telephoneNumber">
+            </div>
+            </div>
+
+            <div class="d-flex mt-5">
+                <div class="cstmFormLayout col-md-6">
+                <h5 class="headingColor">Delivery Address</h5>
+               
+                    <div class="form-group cstmFlex">
+                        <label for="delName" class="cstmlabel">Name*</label>
+                        <input type="text" class=" cstmInput" id="delName" formControlName="deliveryName">
+                    </div>
+                    <div class="form-group cstmFlex">
+                        <label for="deliveryStreet" class="cstmlabel">Street Address*</label>
+                        <input type="text" class=" cstmInput" id="deliveryStreet" formControlName="deliveryStreet">
+                    </div>
+                    <div class="form-group cstmFlex">
+                        <label for="deliveryHouseNr" class="cstmlabel">House No.*</label>
+                        <input type="text" class=" cstmInput" id="deliveryHouseNr" formControlName="deliveryHouseNr">
+                    </div>
+                    <div class="form-group cstmFlex">
+                        <label for="deliveryPostcode" class="cstmlabel">Postcode*</label>
+                        <input type="text" class=" cstmInput" id="deliveryPostcode" formControlName="deliveryPostcode">
+                    </div>
+                    <div class="form-group cstmFlex">
+                        <label for="deliveryCity" class="cstmlabel">City*</label>
+                        <input type="text" class=" cstmInput" id="deliveryCity" formControlName="deliveryCity">
+                    </div>
+                    <div class="form-group cstmFlex">
+                        <label for="deliveryCountry" class="cstmlabel">Country*</label>
+                        <input type="text" class=" cstmInput" id="deliveryCountry" formControlName="deliveryCountry">
+                    </div>
+
+                    <div class="form-group cstmFlex">
+                        <input type="checkbox" (click)="showHideBilling()">
+                         <label  for="billing">
+                            Billing address is different from delivery address
+                        </label>
+                    </div>
+                </div>
+
+                <div *ngIf="isBilling" class="cstmFormLayout col-md-6">
+                    <h5 class="headingColor">Billing Address</h5>
+                   
+                        <div class="form-group cstmFlex">
+                            <label for="billingName" class="cstmlabel">Name</label>
+                            <input type="text" class=" cstmInput" id="billingName" formControlName="billingName">
+                        </div>
+                        <div class="form-group cstmFlex">
+                            <label for="billingStreet" class="cstmlabel">Street Address</label>
+                            <input type="text" class=" cstmInput" id="billingStreet" formControlName="billingStreet">
+                        </div>
+                        <div class="form-group cstmFlex">
+                            <label for="billingHouseNr" class="cstmlabel">House No.</label>
+                            <input type="text" class=" cstmInput" id="billingHouseNr" formControlName="billingHouseNr">
+                        </div>
+                        <div class="form-group cstmFlex">
+                            <label for="billingPostcode" class="cstmlabel">Postcode</label>
+                            <input type="text" class=" cstmInput" id="billingPostcode" formControlName="billingPostcode">
+                        </div>
+                        <div class="form-group cstmFlex">
+                            <label for="billingCity" class="cstmlabel">City</label>
+                            <input type="text" class=" cstmInput" id="billingCity" formControlName="billingCity">
+                        </div>
+                        <div class="form-group cstmFlex">
+                            <label for="billingCountry" class="cstmlabel">Country</label>
+                            <input type="text" class=" cstmInput" id="billingCountry" formControlName="billingCountry">
+                        </div>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-end">
+                <div formArrayName="contactPersons" class="col-md-6 mt-5 cstmFormLayout">
+                <div class="cstmFormLayout" *ngFor="let data of ContactPerson.controls;let i = index" [formGroupName]="i">
+                    
+                    <div class="d-flex align-items-center gap-3">
+                    <h5 class="headingColor">Contact Persons <span *ngIf="ContactPerson.length > 1">({{i+1}})</span></h5>
+                    <i *ngIf="ContactPerson.length > 1" class="bi bi-x-circle cstmDeleteIcon" (click)="removeContactPerson(i)"></i>
+                    </div>
+
+                   
+
+                    <div class="form-group cstmFlex">
+                        <label for="name" class="cstmlabel">Name*</label>
+                        <input type="text" class=" cstmInput" id="name" formControlName="name">
+                    </div>
+                    <div class="form-group cstmFlex">
+                        <label for="telephone" class="cstmlabel">Telephone No.*</label>
+                        <input type="text" class=" cstmInput" id="telephone" formControlName="telephone">
+                    </div>
+                    <div class="form-group cstmFlex">
+                        <label for="mobile" class="cstmlabel">Mobile No.</label>
+                        <input type="text" class=" cstmInput" id="mobile" formControlName="mobile">
+                    </div>
+                    <div class="form-group cstmFlex">
+                        <label for="email" class="cstmlabel">Email</label>
+                        <input type="email" class=" cstmInput" id="email" formControlName="email">
+                    </div>
+
+                   
+                    <div class="form-group cstmFlex">
+                        <label for="country" class="cstmlabel">Country</label>
+                        <input type="text" class=" cstmInput" id="country" formControlName="country">
+                    </div>
+                    
+                  
+            
+                </div>
+                </div>
+
+                <div *ngIf="ContactPerson.length < 5" class="d-flex align-items-center gap-2">
+                    <i type="button" (click)="addContactPerson()" class="bi bi-plus-circle cstmAddIcon"></i><span>Add more contact</span>
+                </div>
+            </div>
+            <button (click)="onSave()" type="button" class="btn btn-primary mt-5">Submit</button>
+        </form>
+    </div>
+</div>
